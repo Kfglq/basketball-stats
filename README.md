@@ -1,5 +1,9 @@
 # Basketball Stats System
 
+[Live Demo - Frontend](你的Vercel網址) | [API Endpoint](你的Render網址)
+
+[![Full Stack CI](你的GitHubActions圖片網址)](https://github.com/Kfglq/basketball-stats)
+
 A full-stack web application designed for managing and visualizing basketball player statistics.
 This project demonstrates a scalable architecture for both frontend and backend development.
 
@@ -50,7 +54,7 @@ The frontend data flow is strictly separated to ensure scalability:
 
 * Go: 1.20+
 
-* Node.js: 18+ (pnpm/npm)
+* Node.js: 18.x or higher (Recommended: v22.x)
 
 * PostgreSQL: 14+
 

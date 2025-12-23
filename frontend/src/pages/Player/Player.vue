@@ -1,10 +1,10 @@
 <!-- src/pages/Player/Player.vue -->
 <script setup lang="ts">
-import { h, computed, watch } from 'vue';
+import { computed, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import { NCard, NFlex, NImage, NText, NTabs, NTabPane, NDataTable, DataTableColumn } from 'naive-ui';
+import { NCard, NFlex, NText } from 'naive-ui';
 import _ from 'lodash';
-import Badge from '@/components/Badge.vue';
+// import Badge from '@/components/Badge.vue';
 import { Player_actions } from '@/stores/actions/Player';
 import { usePlayerStore } from '@/stores';
 

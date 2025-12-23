@@ -4,7 +4,6 @@ import axios, {
   AxiosInstance,
   AxiosRequestConfig,
   AxiosResponse,
-  AxiosError,
   Method,
 } from "axios";
 import config from "./config"; 
