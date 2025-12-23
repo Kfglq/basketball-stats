@@ -53,6 +53,14 @@ func LoadConfig() (*Config, error) {
 
 		dbURL = fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=%s TimeZone=Asia/Taipei",
 			dbHost, dbUser, dbPassword, dbName, dbPort, dbSSLMode)
+	} else {
+		if !strings.Contains(dbURL, "sslmode=") {
+			if strings.Contains(dbURL, "?") {
+				dbURL += "&sslmode=require"
+			} else {
+				dbURL += "?sslmode=require"
+			}
+		}
 	}
 
 	cfg := &Config{
