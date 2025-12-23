@@ -39,7 +39,10 @@ func LoadConfig() (*Config, error) {
 
 	dbURL := os.Getenv("DB_URL")
 
-	if dbURL == "" {
+	if dbURL != "" && (strings.HasPrefix(dbURL, "postgres://") || strings.HasPrefix(dbURL, "postgresql://")) {
+		fmt.Println("INFO: Using DB_URL for database connection.")
+	} else {
+		// 本地模式：如果沒有 URL，則執行手動拼接 (DSN 格式)
 		dbHost := getEnvDefault("DB_HOST", "localhost")
 		dbUser := os.Getenv("DB_USER")
 		dbPassword := os.Getenv("DB_PASSWORD")
@@ -48,19 +51,11 @@ func LoadConfig() (*Config, error) {
 		dbSSLMode := getEnvDefault("DB_SSL_MODE", "disable")
 
 		if dbUser == "" || dbPassword == "" || dbName == "" {
-			return nil, fmt.Errorf("configuration error: DB_URL is not set, AND fallback DB_USER/PASS/NAME are missing")
+			return nil, fmt.Errorf("config error: DB_URL is empty and manual DB settings are incomplete")
 		}
 
 		dbURL = fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=%s TimeZone=Asia/Taipei",
 			dbHost, dbUser, dbPassword, dbName, dbPort, dbSSLMode)
-	} else {
-		if !strings.Contains(dbURL, "sslmode=") {
-			if strings.Contains(dbURL, "?") {
-				dbURL += "&sslmode=require"
-			} else {
-				dbURL += "?sslmode=require"
-			}
-		}
 	}
 
 	cfg := &Config{
