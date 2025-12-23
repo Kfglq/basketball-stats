@@ -76,9 +76,12 @@ func initGinRouter(cfg *config.Config, h *handler.AllHandlers) *gin.Engine {
 	ginRouter := gin.New()
 
 	corsConfig := cors.DefaultConfig()
-	corsConfig.AllowOrigins = []string{"http://localhost:3000"}
+	corsConfig.AllowOrigins = []string{
+		"http://localhost:3000",
+		"https://basketball-stats-nine.vercel.app",
+	}
 	corsConfig.AllowMethods = []string{"GET", "POST"}
-	corsConfig.AllowHeaders = []string{"Origin", "Content-Length", "Content-Type"}
+	corsConfig.AllowHeaders = []string{"Origin", "Content-Length", "Content-Type", "Authorization"}
 
 	ginRouter.Use(cors.New(corsConfig))
 
