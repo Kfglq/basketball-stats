@@ -1,6 +1,6 @@
 <!-- src/pages/Auth/Login.vue -->
 <script setup lang="ts">
-import { NFlex, NText, NTooltip, NButton, NPopover, NColorPicker } from 'naive-ui';
+import { NFlex, NText, NButton } from 'naive-ui';
 import ChangeTopicColor from '@/components/ChangeTopicColor.vue';
 </script>
 
