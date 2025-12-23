@@ -1,7 +1,7 @@
 // go.mod
 module side
 
-go 1.25.0
+go 1.25
 
 require (
 	github.com/bytedance/sonic v1.14.0 // indirect

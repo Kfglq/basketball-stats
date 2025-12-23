@@ -2,7 +2,7 @@
 
 [Live Demo - Frontend](https://basketball-stats-nine.vercel.app/) | [API Endpoint](https://basketball-stats-dbz1.onrender.com/)
 
-[![Full Stack CI](你的GitHubActions圖片網址)](https://github.com/Kfglq/basketball-stats)
+[![Full Stack CI](https://github.com/Kfglq/basketball-stats/actions/workflows/ci.yml/badge.svg)](https://github.com/Kfglq/basketball-stats/actions/workflows/ci.yml)
 
 A full-stack web application designed for managing and visualizing basketball player statistics.
 This project demonstrates a scalable architecture for both frontend and backend development.
@@ -47,6 +47,29 @@ The frontend data flow is strictly separated to ensure scalability:
   ├── createStore.ts # Core Store Factory (Metaprogramming)
   └── index.ts       # Store entry point
 ```
+
+## ☁️ Cloud Architecture & CI/CD
+
+This project implements a fully automated **Modern DevOps Pipeline**. Any change pushed to the `main` branch triggers an automated sequence of quality checks and multi-platform deployments.
+
+### Deployment Infrastructure
+* **Frontend Hosting**: **Vercel** (Edge network for optimized content delivery).
+* **Backend Hosting**: **Render** (Managed Web Service with automated health checks).
+* **Database**: **Neon** (Serverless PostgreSQL providing high availability and persistent storage).
+
+### CI/CD Pipeline (GitHub Actions)
+The workflow ensures code integrity before any deployment:
+1.  **Backend CI**: 
+  * Automated Go environment setup.
+  * Dependency verification (`go mod tidy`).
+  * **Static Analysis & Unit Testing**: Running `go test` to ensure logic correctness.
+  * Build verification.
+2.  **Frontend CI**:
+  * Node.js environment synchronization.
+  * **Type Safety Check**: Running `vue-tsc` to ensure zero TypeScript errors.
+  * Production build simulation.
+3.  **Automated CD**:
+  * Upon successful CI completion, Vercel and Render pull the verified code for zero-downtime deployment.
 
 ## Getting Started
 
