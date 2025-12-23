@@ -37,26 +37,23 @@ func LoadConfig() (*Config, error) {
 		fmt.Printf("INFO: Successfully loaded configuration from %s.\n", envFileName)
 	}
 
-	dbHost := getEnvDefault("DB_HOST", "localhost")
-	dbUser := os.Getenv("DB_USER")
-	dbPassword := os.Getenv("DB_PASSWORD")
-	dbName := os.Getenv("DB_NAME")
-	dbPort := getEnvDefault("DB_PORT", "5432")
-	dbSSLMode := getEnvDefault("DB_SSL_MODE", "disable")
+	dbURL := os.Getenv("DB_URL")
 
-	if dbUser == "" || dbPassword == "" || dbName == "" {
-		// 錯誤訊息換成英文
-		return nil, fmt.Errorf("configuration error: DB_USER, DB_PASSWORD, or DB_NAME is not set")
+	if dbURL == "" {
+		dbHost := getEnvDefault("DB_HOST", "localhost")
+		dbUser := os.Getenv("DB_USER")
+		dbPassword := os.Getenv("DB_PASSWORD")
+		dbName := os.Getenv("DB_NAME")
+		dbPort := getEnvDefault("DB_PORT", "5432")
+		dbSSLMode := getEnvDefault("DB_SSL_MODE", "disable")
+
+		if dbUser == "" || dbPassword == "" || dbName == "" {
+			return nil, fmt.Errorf("configuration error: DB_URL is not set, AND fallback DB_USER/PASS/NAME are missing")
+		}
+
+		dbURL = fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=%s TimeZone=Asia/Taipei",
+			dbHost, dbUser, dbPassword, dbName, dbPort, dbSSLMode)
 	}
-
-	dbURL := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=%s TimeZone=Asia/Taipei",
-		dbHost,
-		dbUser,
-		dbPassword,
-		dbName,
-		dbPort,
-		dbSSLMode,
-	)
 
 	cfg := &Config{
 		Protocol:    getEnvDefault("APP_PROTOCOL", "http"),

@@ -1,6 +1,6 @@
 # Basketball Stats System
 
-[Live Demo - Frontend](你的Vercel網址) | [API Endpoint](你的Render網址)
+[Live Demo - Frontend](https://basketball-stats-nine.vercel.app/) | [API Endpoint](你的Render網址)
 
 [![Full Stack CI](你的GitHubActions圖片網址)](https://github.com/Kfglq/basketball-stats)
 
