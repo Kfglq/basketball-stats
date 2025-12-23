@@ -1,0 +1,52 @@
+// src/styles/margin-padding.scss
+@use "sass:list";
+
+$spacing-max-px: 200;
+
+@mixin generate-spacing-utilities {
+  $even-numbers: ();
+  
+  @for $i from 2 through $spacing-max-px { 
+    @if $i % 2 == 0 {
+      $even-numbers: list.append($even-numbers, $i);
+    }
+  }
+
+  $spacing-utilities: (
+    (m, margin),
+    (mt, margin-top),
+    (mb, margin-bottom),
+    (ml, margin-left),
+    (mr, margin-right),
+    (mx, margin-left, margin-right), 
+    (my, margin-top, margin-bottom), 
+    
+    (p, padding),
+    (pt, padding-top),
+    (pb, padding-bottom),
+    (pl, padding-left),
+    (pr, padding-right),
+    (px, padding-left, padding-right),
+    (py, padding-top, padding-bottom)
+  );
+  
+  @each $prefixes in $spacing-utilities {
+    $prefix: list.nth($prefixes, 1);
+    $property-1: list.nth($prefixes, 2);
+    $property-2: if(list.length($prefixes) > 2, list.nth($prefixes, 3), null); 
+    
+    @each $i in $even-numbers {
+      $value: $i * 1px;
+      
+      .#{$prefix}-#{$i} { 
+        #{$property-1}: $value !important;
+        
+        @if $property-2 {
+          #{$property-2}: $value !important;
+        }
+      }
+    }
+  }
+}
+
+@include generate-spacing-utilities;

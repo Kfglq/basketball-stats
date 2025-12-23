@@ -1,0 +1,37 @@
+# Taskfile.yml
+# 使用 Go Task 取代 Makefile，確保跨平台兼容性
+
+version: '3'
+
+vars:
+  CMD_PATH: cmd/server
+  GO_ENV_DEV: development
+  BINARY_NAME: server
+
+tasks:
+  dev:
+    desc: "Start development server"
+    env:
+      GO_ENV: "{{.GO_ENV_DEV}}"
+    cmds:
+      - go run {{.CMD_PATH}}/main.go
+
+  run:
+    desc: "Run server with system GO_ENV"
+    cmds:
+      - go run {{.CMD_PATH}}/main.go
+
+  build:
+    desc: "Build the binary"
+    cmds:
+      - go build -o bin/{{.BINARY_NAME}} {{.CMD_PATH}}/main.go
+
+  test:
+    desc: "Run all Go tests"
+    cmds:
+      - go test -v ./...
+
+  clean:
+    desc: "Clean build artifacts"
+    cmds:
+      - rm -rf bin

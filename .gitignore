@@ -1,0 +1,42 @@
+# --- System ---
+.DS_Store
+Thumbs.db
+
+# --- Frontend (Vue/Vite) ---
+frontend/node_modules/
+frontend/dist/
+frontend/stats.html
+*.local
+
+# --- Backend (Golang) ---
+backend/cmd/server/server
+backend/cmd/server/main
+
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+backend/*.test
+backend/*.out
+
+# --- Environment variables (兩端通用) ---
+.env
+.env.*
+!.env.example
+
+# --- IDE ---
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# --- Logs ---
+logs
+*.log
+npm-debug.log*
+yarn-error.log*

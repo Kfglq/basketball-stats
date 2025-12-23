@@ -1,0 +1,22 @@
+# Taskfile.yml
+# 使用 Go Task 取代 Makefile，確保跨平台兼容性
+
+version: '3'
+
+tasks:
+  # 呼叫後端的 task
+  be-dev:
+    desc: "Start Backend Dev Server"
+    cmds:
+      - task -d backend dev
+
+  # 呼叫前端的 npm 指令
+  fe-dev:
+    desc: "Start Frontend Dev Server"
+    cmds:
+      - cd frontend && npm run dev
+
+  # 一次啟動前後端 (如果你有安裝並行執行工具)
+  all:
+    desc: "Start Both"
+    deps: [be-dev, fe-dev]

@@ -1,0 +1,31 @@
+// src/styles/color.scss
+
+$color-white: white;
+$color-east: #0070C0;
+$color-west: #FF0000;
+
+:root {
+  --color-white: #{$color-white};
+  --color-east: #{$color-east};
+  --color-west: #{$color-west};
+}
+
+.color-white{
+  color: $color-white;
+}
+
+.color-east {
+  color: $color-east;
+}
+
+.color-west {
+  color: $color-west;
+}
+
+.bg-east {
+  background-color: $color-east;
+}
+
+.bg-west {
+  background-color: $color-west;
+}
