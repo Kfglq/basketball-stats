@@ -49,7 +49,7 @@ jobs:
           cd frontend
           npm run build
 
-  # CI 結束
+  # 檢查前後端是否皆通過 CI
   ci-success:
     needs: [backend-check, frontend-check]
     runs-on: ubuntu-latest
