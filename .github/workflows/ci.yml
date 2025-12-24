@@ -48,6 +48,8 @@ jobs:
         run: |
           cd frontend
           npm run build
+
+  # CI 結束
   ci-success:
     needs: [backend-check, frontend-check]
     runs-on: ubuntu-latest
