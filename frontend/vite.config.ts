@@ -14,6 +14,19 @@ export default defineConfig(({mode})=>{
   const GENERATE_SOURCEMAP = env.GENERATE_SOURCEMAP === 'true'
   return {
     plugins: [vue()],
+    test: {
+      globals: true,
+      environment: 'jsdom',
+      coverage: {
+        provider: 'v8',
+        exclude: [
+          'src/assets/**',
+          'src/stores/service/**',
+          'src/stores/index.ts',
+          '**/*.d.ts'
+        ]
+      }
+    },
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url))

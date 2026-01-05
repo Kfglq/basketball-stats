@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NotFound.vue > 應該符合快照 (Snapshot Testing) 1`] = `
+"<div data-v-283cbd09="">
+  <h1 data-v-283cbd09="">Not Found</h1>
+</div>"
+`;
