@@ -52,7 +52,6 @@ describe('Player.vue', () => {
 
     playerStore.setPlayerData(mockPlayerData as any);
     await nextTick();
-    const texts = wrapper.findAll('.mock-text');
     expect(wrapper.text()).toContain('Jayson Tatum');
     expect(wrapper.text()).toContain('球隊：BOS');
     expect(wrapper.text()).toContain('位置：F');
