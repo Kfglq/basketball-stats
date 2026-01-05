@@ -17,6 +17,8 @@ This project demonstrates a scalable architecture for both frontend and backend 
 
 * UI Component Library: Naive UI
 
+* **Testing: Vitest (Unit & Component Testing with 100% Code Coverage)**
+
 * Tools: Axios, SCSS/Sass, Lodash, FontAwesome
 
 ### Backend
@@ -62,11 +64,11 @@ The workflow ensures code integrity before any deployment:
 1.  **Backend CI**: 
   * Automated Go environment setup.
   * Dependency verification (`go mod tidy`).
-  * **Static Analysis & Unit Testing**: Running `go test` to ensure logic correctness.
-  * Build verification.
+  * **Unit Testing with Mocks**: Running `go test` with Mocked Repositories to ensure Business Logic (Service Layer) and API Handlers are working correctly without side effects.
 2.  **Frontend CI**:
   * Node.js environment synchronization.
-  * **Type Safety Check**: Running `vue-tsc` to ensure zero TypeScript errors.
+  * **Unit Testing (Vitest)**: Executes a comprehensive test suite covering business logic, store actions, and UI components.
+  * **Type Safety Check**: Runs `vue-tsc` to ensure strict TypeScript compliance and zero build-time errors.
   * Production build simulation.
 3.  **Automated CD**:
   * Upon successful CI completion, Vercel and Render pull the verified code for zero-downtime deployment.

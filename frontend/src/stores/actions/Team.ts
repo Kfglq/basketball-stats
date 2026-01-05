@@ -3,11 +3,10 @@ import { call_AllTeams_List, call_SingleTeamById_Data } from '@/stores/service/T
 import { useTeamStore, useCommonStore } from '@/stores';
 import { loadSingleTeamPayload } from '@/types/stores/Team';
 
-const TeamStore = useTeamStore();
-const commonStore = useCommonStore();
-
 export const Team_actions = {
   async load_AllTeams_List() {
+    const TeamStore = useTeamStore();
+    const commonStore = useCommonStore();
     commonStore.setLoading(true); 
     commonStore.setError(null);
 
@@ -15,7 +14,7 @@ export const Team_actions = {
       const { result } = await call_AllTeams_List();
       TeamStore.setAllTeams(result); 
     } catch (e: any) {
-      commonStore.setError(e.message || '載入列表 1 失敗');
+      commonStore.setError(e.message || '載入球隊資料失敗');
       throw e;
     } finally {
       commonStore.setLoading(false);
@@ -23,6 +22,8 @@ export const Team_actions = {
   },
 
   async load_SingleTeamById_Data(payload: loadSingleTeamPayload) {
+    const TeamStore = useTeamStore();
+    const commonStore = useCommonStore();
     commonStore.setLoading(true); 
     commonStore.setError(null);
 
@@ -30,7 +31,7 @@ export const Team_actions = {
       const { result } = await call_SingleTeamById_Data(payload);
       TeamStore.setSingleTeam(result); 
     } catch (e: any) {
-      commonStore.setError(e.message || '載入列表 1 失敗');
+      commonStore.setError(e.message || '載入單一球隊資料失敗');
       throw e;
     } finally {
       commonStore.setLoading(false);

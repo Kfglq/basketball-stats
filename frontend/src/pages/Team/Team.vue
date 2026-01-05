@@ -37,8 +37,9 @@ const rowProps = (row: playerBasic) => ({
   onClick: () => router.push({ name: 'Player', params: { playerId: row.playerId } }),
 })
 
-const getImageUrl = (id: string) => {
-  return new URL(`/src/assets/teams/${id}.svg`, import.meta.url).href || '';
+const getImageUrl = (id: string | undefined) => {
+  if (!id) return '';
+  return new URL(`/src/assets/teams/${id}.svg`, import.meta.url).href;
 }
 </script>
 

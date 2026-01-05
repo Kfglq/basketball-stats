@@ -10,6 +10,22 @@ jobs:
   # 後端檢查：包含編譯與測試
   backend-check:
     runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: testdb
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
       - uses: actions/checkout@v4
       
@@ -22,8 +38,22 @@ jobs:
       - name: Install Dependencies
         run: cd backend && go mod tidy
 
+      - name: Install PostgreSQL Client
+        run: sudo apt-get update && sudo apt-get install -y postgresql-client
+
+      - name: Init DB Schema
+        run: |
+          # 使用預裝的 psql 直接連線到 services 啟動的容器
+          psql -h localhost -U user -d testdb -f backend/scripts/init.sql
+        env:
+          PGPASSWORD: password
+
       - name: Run Backend Tests
-        run: cd backend && go test -v ./...
+        run: |
+          cd backend
+          go test -v ./...
+        env:
+          TEST_DB_URL: "postgres://user:password@localhost:5432/testdb?sslmode=disable"
 
       - name: Build Backend
         run: cd backend && go build ./...
@@ -42,7 +72,12 @@ jobs:
           cache-dependency-path: frontend/package-lock.json
 
       - name: Install Dependencies
-        run: cd frontend && npm install
+        run: cd frontend && npm ci
+
+      - name: Run Frontend Tests and Check Coverage
+        run: |
+          cd frontend
+          npm run coverage
 
       - name: Build Frontend
         run: |

@@ -14,7 +14,10 @@ const columns: DataTableColumn<teams>[] = [
   {
     title: 'Teams', key: 'Teams',
     render(row: teams) {
-      const teamIcon = new URL(`/src/assets/teams/${_.get(row, 'teamId')}.svg`, import.meta.url).href || '';
+      const teamId = _.get(row, 'teamId');
+      const teamIcon = teamId 
+        ? new URL(`/src/assets/teams/${teamId}.svg`, import.meta.url).href 
+        : '';
       const teamName = _.get(row, 'teamEnName');
       const isDarkTheme = _.get(commonStore,"darkTheme");
       const teamColor = isDarkTheme?'#fff':_.get(row, 'teamColor');
