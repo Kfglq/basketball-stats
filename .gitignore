@@ -7,6 +7,8 @@ frontend/node_modules/
 frontend/dist/
 frontend/stats.html
 *.local
+# --- test ---
+frontend/coverage/
 
 # --- Backend (Golang) ---
 backend/cmd/server/server

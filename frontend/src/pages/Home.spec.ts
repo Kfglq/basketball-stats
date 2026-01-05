@@ -95,24 +95,6 @@ describe('Home.vue', () => {
     expect(nTextVNode.props.style.color).toBe('#fff');
   });
 
-  // it('在一般模式下，球隊名稱應顯示為球隊專屬顏色', async () => {
-  //   const teamStore = useTeamStore();
-  //   const commonStore = useCommonStore();
-
-  //   teamStore.setAllTeams(mockTeams);
-  //   commonStore.darkTheme = false;
-
-  //   const wrapper = mount(Home);
-  //   await nextTick();
-
-  //   const tables = wrapper.findAllComponents({ name: 'NDataTable' });
-  //   const columns = tables[0].props('columns');
-  //   const teamColumn = columns.find((c: any) => c.key === 'Teams');
-  //   const vnode = teamColumn.render(mockTeams[1]);
-  //   const nTextVNode = vnode.children[1]; 
-  //   expect(nTextVNode.props.style.color).toBe('#007A33');
-  // });
-
   it('當 teamId 缺失導致路徑生成異常時，teamIcon 應回傳空字串 (覆蓋 || 分支)', async () => {
     const teamStore = useTeamStore();
     const abnormalTeams = [{ teamId: null, teamEnName: 'Unknown', conferenceName: 'Eastern' }];
