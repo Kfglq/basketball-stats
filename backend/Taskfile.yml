@@ -27,9 +27,15 @@ tasks:
       - go build -o bin/{{.BINARY_NAME}} {{.CMD_PATH}}/main.go
 
   test:
-    desc: "Run all Go tests"
+    desc: "Run all Go tests with race detector"
     cmds:
-      - go test -v ./...
+      - go mod tidy
+      - go test -v -race ./...
+
+  tidy:
+    desc: "Tidy up go modules"
+    cmds:
+      - go mod tidy
 
   clean:
     desc: "Clean build artifacts"
