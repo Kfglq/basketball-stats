@@ -48,3 +48,11 @@ jobs:
         run: |
           cd frontend
           npm run build
+
+  # 檢查前後端是否皆通過 CI
+  ci-success:
+    needs: [backend-check, frontend-check]
+    runs-on: ubuntu-latest
+    steps:
+      - name: All checks passed
+        run: echo "CI completed successfully!"

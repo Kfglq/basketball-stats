@@ -48,7 +48,7 @@ The frontend data flow is strictly separated to ensure scalability:
   └── index.ts       # Store entry point
 ```
 
-## ☁️ Cloud Architecture & CI/CD
+## Cloud Architecture & CI/CD
 
 This project implements a fully automated **Modern DevOps Pipeline**. Any change pushed to the `main` branch triggers an automated sequence of quality checks and multi-platform deployments.
 
